@@ -3,7 +3,7 @@ The following is the description of all the files in this github.
 
 The Python 3.10 scripts are for obtaining all the figures in the paper:
 
-	Parada Contzen, M. "Enhancing performance of power flow algorithms for distribution smart grids with renewable energy sources." 2023
+	Parada Contzen, M. "Faster power flow algorithms for simulation of distribution smart grids with renewable sources" 2023
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
