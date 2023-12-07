@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import math
 
 import circuit_fun as ct
 import NR_fun as fx
@@ -9,27 +10,31 @@ import time_fun as tm
 from scipy.linalg import expm
 
 ########################################################
-fast = False
+fast = True
+########################################################
+print('#####################')
+print("WARNING: this might take a couple of hours...")
 ########################################################
 #define algorithms
-#algorithms = ['NRC','NRCinv', 'NRD', 'NRX', 'IWA','NRI','SC','GS', 'NRI0','NRX0','NRIsum','NRIM']#all
+#algorithms = ['NRC','NRCinv', 'NRD', 'NRX', 'IWA','FPPF','NRI','SC','GS', 'NRI0','NRX0','NRIM','NRIsum']#all
+# algorithms = ['NRC','GS','FPPF']#some
 if fast:
-    algorithms = ['IWA','SC', 'NRI0','NRIsum']#fast algorithms
+    algorithms = ['IWA','SC','NRI0','NRIM','NRIsum']#faster algorithms
 else:
-    algorithms = ['NRC','NRCinv', 'NRD', 'NRX', 'IWA','NRI','SC','GS', 'NRI0','NRIsum']#all in paper
+    algorithms = ['NRC','NRCinv','NRR', 'NRD', 'NRX','FPPF', 'IWA','NRI','SC','GS']#algorithms from others
 Nalgs = np.size(algorithms)#num of algs
-M = 1 #for NRIsum, NRIM
+M = 1 #for NRIsum
 itmax = 25
 prec = 0.00001
 print('#####################')
 print("Algorithms: %s" % (', '.join(algorithms)))
 ########################################################
 if fast:
-    #Nnodos = np.arange(50, 101, 50)
     Nnodos = np.arange(50, 401, 50)
 else:
-    #Nnodos = np.arange(10, 101, 50)
     Nnodos = np.arange(10, 201, 10)
+# Nnodos = np.arange(10, 101, 10)
+
 Nexample = 25
 Dmin = 100  #min distance btwn nodes
 Dmax = 200  #max distance btwn nodes
@@ -43,7 +48,7 @@ nn = int((tf - t0) / T) + 1  #num of instants
 t = np.linspace(t0, tf, nn)  #time vector in mins
 ########################################################
 prtvol = False
-num_cts = 5
+num_cts = 5#num of circuits for each N
 
 cto_meaniterations = np.zeros((num_cts,Nalgs))
 cto_meantime = np.zeros((num_cts,Nalgs))
@@ -154,8 +159,10 @@ for N in Nnodos:
                 arguments = '(barY, barY0, barS, V0, itmax, prec)'
                 if name=='NRC' or name=='NRD' or name=='NRCinv':
                     arguments = '(barY, barY0, barS, R0, Phi0, itmax, prec)'
-                if name=='NRIsum' or name=='NRIM':
+                if name=='NRIsum':
                     arguments = '(barY, barY0, barS, V0, itmax, prec,M)'
+                if name=='FPPF':
+                    arguments = '(barY, barY0, barS, V0, 6, prec)'
                 
                 function = 'fx.'+name+arguments
                 
@@ -198,9 +205,9 @@ if fast:
         ]
 else: 
     subsets_algorithms = [
-        ['NRC','NRCinv','NRD','NRX','IWA'],
-        ['NRC','GS'],
-        ['NRX','IWA','NRI','SC','NRI0','NRIsum'],
+        ['NRC','NRCinv','NRR','NRD','NRX','IWA'],
+        ['NRC','FPPF','GS'],
+        ['NRX','IWA','NRI','SC'],
         ]
 ########################################################
 for subset in subsets_algorithms:

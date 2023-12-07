@@ -26,6 +26,7 @@ def DG_circuit(nodes, PVprob, PVmean, PVdev):
     pv = np.clip(pv, 0, None)  #eliminate negatives
     
     return pv
+
 #############################################################
 def impendances_circuit(lines, load):
     ###############
