@@ -3,7 +3,7 @@ The following is the description of all the files in this github.
 
 The Python 3.10 scripts are for obtaining all the figures in the paper:
 
-	Parada Contzen, M. "Faster power flow algorithms for simulation of distribution smart grids with renewable sources" 2023
+	Parada Contzen, M. "Enhancing performance of power flow algorithms for distribution smart grids with renewable energy sources." 2024
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,7 +20,7 @@ File: main.py
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	Main:
 		1.- Loops over the defined number of nodes:
-			a) Loops over the number of circuits (5 in the paper):
+			a) Loops over the number of circuits (5 for each number of nodes):
 				i) creates a circuit with loads and impedances.
 				ii) Normalizes circuit parameters.
 				iii) Generates vectors to save simulated data
@@ -87,5 +87,7 @@ Files:
 	load_res_profile.csv
 	pv_profile.csv
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	These files content as comma separted values the parameters of the splin models of the load according to their class, and of the photovoltaic generation.
+	These files content, as comma separted values, the parameters of the splin models of the load according to their class, and of the photovoltaic generation. The load profiles are slightly based on the data presented in the paper 
+		P. C. Anukoolthamchote, D. Assané, and D. E. Konan, "Net electricity load profles: Shape and variability considering customer-mix at transformers on the island of Oahu, Hawaii", 2020
+	The photovoltaic profiles are taken from the Explorador Solar project webpage: https://solar.minenergia.cl/inicio 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
