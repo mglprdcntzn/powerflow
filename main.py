@@ -20,6 +20,7 @@ print("WARNING: this might take a couple of hours...")
 # algorithms = ['NRC','GS','FPPF']#some
 if fast:
     algorithms = ['IWA','SC','NRI0','NRIM','NRIsum']#faster algorithms
+    # algorithms = ['NRI0']#fastest algorithm for code testing
 else:
     algorithms = ['NRC','NRCinv','NRR', 'NRD', 'NRX','FPPF', 'IWA','NRI','SC','GS']#algorithms from others
 Nalgs = np.size(algorithms)#num of algs
@@ -217,15 +218,19 @@ for subset in subsets_algorithms:
     file_name_sfx = '_'.join(subset)+'.eps'
     if fast:
         file_name_sfx = 'fast_'+file_name_sfx
+        
+    # plt.rcParams.update({'font.size': 14})
+    font_size = 16
     ############################################
     #time vs nodes
     plt.plot(Nnodos,meantime[:,indices], marker='*', linestyle='-', markersize=5)
     plt.grid(True)
-    plt.legend(subset)
+    plt.legend(subset,loc='upper left', fontsize=font_size-2)
     plt.xticks(Nnodos[1::2])
-    plt.title('Mean iteration time')
-    plt.ylabel('[ms]')
-    plt.xlabel('N')
+    plt.title('Mean iteration time', fontsize=font_size)
+    plt.ylabel('[ms]', fontsize=font_size)
+    plt.xlabel('N', fontsize=font_size)
+    plt.tick_params(axis='both', labelsize=font_size)
     plt.savefig('time_'+file_name_sfx, format='eps')
     plt.show()
     plt.close()
@@ -233,11 +238,12 @@ for subset in subsets_algorithms:
     #iterations vs nodes
     plt.plot(Nnodos,meaniterations[:,indices], marker='*', linestyle='-', markersize=5)
     plt.grid(True)
-    plt.legend(subset)
+    plt.legend(subset,loc='upper left', fontsize=font_size-2)
     plt.xticks(Nnodos[1::2])
-    plt.title('Mean iterations')
+    plt.title('Mean iterations', fontsize=font_size)
     #plt.ylabel('iterations')
-    plt.xlabel('N')
+    plt.xlabel('N', fontsize=font_size)
+    plt.tick_params(axis='both', labelsize=font_size)
     plt.savefig('iterations_'+file_name_sfx, format='eps')
     plt.show()
     plt.close()
@@ -245,36 +251,39 @@ for subset in subsets_algorithms:
     #gues vs nodes
     plt.plot(Nnodos,meanabsgues[:,indices], marker='*', linestyle='-', markersize=5)
     plt.grid(True)
-    plt.legend(subset)
+    plt.legend(subset,loc='upper left', fontsize=font_size-2)
     plt.xticks(Nnodos[1::2])
     plt.tight_layout()
-    plt.title('Mean ||g(.)||')
-    plt.ylabel('[p.u.]')
-    plt.xlabel('N')
+    plt.title('Mean ||g(.)||', fontsize=font_size)
+    plt.ylabel('[p.u.]', fontsize=font_size)
+    plt.xlabel('N', fontsize=font_size)
+    plt.tick_params(axis='both', labelsize=font_size)
     plt.show()
     plt.close()
     ############################################
     #voltage errors w/r to first ABSOLUTE algorithm  vs nodes
     plt.plot(Nnodos,meanerror[:,indices], marker='*', linestyle='-', markersize=5)
     plt.grid(True)
-    plt.legend(subset)
+    plt.legend(subset,loc='upper left', fontsize=font_size-2)
     plt.xticks(Nnodos[1::2])
     plt.tight_layout()
-    plt.title('Mean voltage error w/r to '+algorithms[0])
-    plt.xlabel('N')
-    plt.ylabel('%')
+    plt.title('Mean voltage error w/r to '+algorithms[0], fontsize=font_size)
+    plt.xlabel('N', fontsize=font_size)
+    plt.ylabel('%', fontsize=font_size)
+    plt.tick_params(axis='both', labelsize=font_size)
     plt.show()
     plt.close()
     ############################################
     #Time rate w/r to first subset algorithm vs nodes
     plt.plot(Nnodos,meantime[:,indices[1:]]/(meantime[:,indices[0]].reshape(-1,1)@np.ones((1,len(subset)-1))), marker='*', linestyle='-', markersize=5)
     plt.grid(True)
-    plt.legend(subset[1:])
+    plt.legend(subset[1:],loc='upper left', fontsize=font_size-2)
     plt.xticks(Nnodos[1::2])
     plt.tight_layout()
-    plt.title('Time rate w/r to '+subset[0])
-    plt.ylabel('[ms/ms]')
-    plt.xlabel('N')
+    plt.title('Time rate w/r to '+subset[0], fontsize=font_size)
+    plt.ylabel('[ms/ms]', fontsize=font_size)
+    plt.xlabel('N', fontsize=font_size)
+    plt.tick_params(axis='both', labelsize=font_size)
     plt.savefig('timerate_'+file_name_sfx, format='eps')
     plt.show()
     plt.close()

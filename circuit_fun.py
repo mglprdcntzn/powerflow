@@ -134,7 +134,7 @@ def print_circuit(nodes, lines, plt_name,cts_data):
     ax.scatter(nodes[:, 0], nodes[:, 1], color='green')
     #labels on nodes
     for i in range(len(nodes[:, 0])):
-        ax.text(nodes[i, 0]+20, nodes[i, 1]+20, i, fontsize=10, ha='center', va='center',color='green')    
+        ax.text(nodes[i, 0]+20, nodes[i, 1]+20, i, fontsize=12, ha='center', va='center',color='green')    
     #find corners coordinates
     plt.tight_layout()
     left, right = ax.get_xlim()
@@ -151,8 +151,8 @@ def print_circuit(nodes, lines, plt_name,cts_data):
     ax.plot([scale0x+300,scale0x+300], [scale0y+10,scale0y-10], linestyle='-', color='black')
     ax.plot([scale0x+400,scale0x+400], [scale0y+10,scale0y-10], linestyle='-', color='black')
     
-    ax.text(scale0x+200, scale0y-15, '200[m]', fontsize=8, ha='center', va='top',color='black') 
-    ax.text(scale0x+400, scale0y-15, '400[m]', fontsize=8, ha='center', va='top',color='black') 
+    ax.text(scale0x+200, scale0y-25, '200[m]', fontsize=10, ha='center', va='top',color='black') 
+    ax.text(scale0x+400, scale0y-25, '400[m]', fontsize=10, ha='center', va='top',color='black') 
     #find corner with more/less points
     corner_upleft = 0
     corner_upright = 0
@@ -211,7 +211,7 @@ def print_circuit(nodes, lines, plt_name,cts_data):
             'Total Rated Power: '+str(Sload)+'[MVA]\n'+
             'Total installed PV: '+str(Sdg)+'[MVA]\n'+
             'Total length: '+str(length)+'[km]',
-            fontsize=12, ha=hall, va=vall,color='black') 
+            fontsize=14, ha=hall, va=vall,color='black') 
     
     # Saving the plot to an image file
     fig.savefig(plt_name+'.eps', format='eps')
